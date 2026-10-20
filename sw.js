@@ -1,6 +1,6 @@
 /* Service worker: caches the app so it works offline (gym with no signal? no problem).
    Bump CACHE when you change files so phones pick up the new version. */
-const CACHE = "rally-v2";
+const CACHE = "rally-v3";
 const ASSETS = [
   "./",
   "./index.html",
@@ -8,6 +8,7 @@ const ASSETS = [
   "./app.js",
   "./manifest.webmanifest",
   "./fonts/bebas-neue.woff2",
+  "./fonts/anton.woff2",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/icon-maskable-512.png",
@@ -30,7 +31,7 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (e) => {
   if (e.request.method !== "GET") return;
   e.respondWith(
-    fetch(e.request)
+    fetch(e.request, { cache: "no-cache" })
       .then((res) => {
         const copy = res.clone();
         caches.open(CACHE).then((c) => c.put(e.request, copy));

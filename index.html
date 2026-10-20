@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <meta name="theme-color" content="#0b0d10" />
+  <meta name="theme-color" content="#000000" />
   <meta name="description" content="Ad-free volleyball scoreboard. Tap to score, swipe down to undo a point." />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -12,61 +12,51 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icons/icon-192.png" type="image/png" />
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <link rel="preload" href="fonts/anton.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/bebas-neue.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <main class="board" id="board">
-    <!-- Top strip: set counter + set history -->
-    <header class="strip">
-      <div class="sets">
-        <span class="sets-num" id="setsA">0</span>
-        <div class="sets-mid">
-          <span class="set-label" id="setLabel">SET 1</span>
-          <div class="set-history" id="setHistory"></div>
-        </div>
-        <span class="sets-num" id="setsB">0</span>
-      </div>
-    </header>
-
-    <!-- Team panels (order flips when sides are swapped) -->
     <section class="panel" id="panel0" data-team="0" aria-label="Team 1 — tap to add a point">
       <div class="panel-top">
         <button class="serve-btn" data-serve="0" aria-label="Team 1 serves"><span class="ball"></span></button>
         <span class="team-name" id="name0">HOME</span>
+        <span class="pips" id="pips0"></span>
       </div>
       <div class="score" id="score0">0</div>
       <div class="badge" id="badge0"></div>
     </section>
 
+    <!-- Center rail: set info + controls -->
+    <nav class="rail">
+      <div class="rail-info">
+        <span class="rail-set" id="setLabel">SET 1</span>
+        <span class="rail-format" id="formatLabel">1 SET</span>
+      </div>
+      <button class="tool" id="btnUndo" aria-label="Undo">
+        <svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
+      </button>
+      <button class="tool" id="btnSwap" aria-label="Swap sides">
+        <svg viewBox="0 0 24 24"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+      </button>
+      <button class="tool" id="btnReset" aria-label="Reset">
+        <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+      </button>
+      <button class="tool" id="btnSettings" aria-label="Settings">
+        <svg viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+      </button>
+    </nav>
+
     <section class="panel" id="panel1" data-team="1" aria-label="Team 2 — tap to add a point">
       <div class="panel-top">
         <button class="serve-btn" data-serve="1" aria-label="Team 2 serves"><span class="ball"></span></button>
         <span class="team-name" id="name1">AWAY</span>
+        <span class="pips" id="pips1"></span>
       </div>
       <div class="score" id="score1">0</div>
       <div class="badge" id="badge1"></div>
     </section>
-
-    <!-- Bottom toolbar -->
-    <nav class="toolbar">
-      <button class="tool" id="btnUndo" aria-label="Undo">
-        <svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
-        <span>Undo</span>
-      </button>
-      <button class="tool" id="btnSwap" aria-label="Swap sides">
-        <svg viewBox="0 0 24 24"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
-        <span>Swap</span>
-      </button>
-      <button class="tool" id="btnReset" aria-label="Reset">
-        <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
-        <span>Reset</span>
-      </button>
-      <button class="tool" id="btnSettings" aria-label="Settings">
-        <svg viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
-        <span>Setup</span>
-      </button>
-    </nav>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </main>
@@ -83,6 +73,7 @@
       <span class="win-kicker" id="winKicker">SET 1</span>
       <h2 class="win-title" id="winTitle">HOME</h2>
       <p class="win-score" id="winScore">25 – 21</p>
+      <div class="set-history" id="setHistory"></div>
       <div class="win-actions">
         <button class="btn ghost" id="winUndo">Undo point</button>
         <button class="btn primary" id="winNext">Next set</button>
@@ -108,21 +99,6 @@
         <button class="btn ghost small" data-close>Done</button>
       </div>
 
-      <div class="team-edit">
-        <label class="field">
-          <span>Team 1</span>
-          <input id="inName0" maxlength="14" autocomplete="off" />
-        </label>
-        <div class="swatches" data-team="0"></div>
-      </div>
-      <div class="team-edit">
-        <label class="field">
-          <span>Team 2</span>
-          <input id="inName1" maxlength="14" autocomplete="off" />
-        </label>
-        <div class="swatches" data-team="1"></div>
-      </div>
-
       <div class="row">
         <span>Match</span>
         <div class="seg" data-setting="bestOf">
@@ -142,12 +118,27 @@
         </div>
       </div>
 
+      <div class="team-edit">
+        <label class="field">
+          <span>Team 1</span>
+          <input id="inName0" maxlength="14" autocomplete="off" />
+        </label>
+        <div class="swatches" data-team="0"></div>
+      </div>
+      <div class="team-edit">
+        <label class="field">
+          <span>Team 2</span>
+          <input id="inName1" maxlength="14" autocomplete="off" />
+        </label>
+        <div class="swatches" data-team="1"></div>
+      </div>
+
       <label class="row toggle"><span>Win by 2</span><input type="checkbox" data-setting="winBy2" /></label>
       <label class="row toggle"><span>Switch sides after each set</span><input type="checkbox" data-setting="autoSwap" /></label>
       <label class="row toggle"><span>Vibrate on point</span><input type="checkbox" data-setting="vibrate" /></label>
       <label class="row toggle"><span>Keep screen awake</span><input type="checkbox" data-setting="wakeLock" /></label>
 
-      <p class="hint">Tap a side to add a point · swipe down on a side to take one away · tap the ball to set who serves.</p>
+      <p class="hint">Tap a side to add a point · swipe down on a side to take one away · tap the circle to set who serves.</p>
     </div>
   </div>
 

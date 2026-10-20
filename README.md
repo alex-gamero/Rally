@@ -5,7 +5,7 @@ It works offline and keeps your screen awake, and it never shows an ad when you 
 
 ## Features
 - **Tap** a side for +1, **swipe down** on a side for −1
-- Sets to 25 (deciding set to 15), win by 2, best of 1 / 3 / 5, all configurable
+- Sets to 11 / 15 / 21 / 25, win by 2, single set or best of 3 / 5
 - **SET POINT / MATCH POINT** badges
 - Serve indicator follows the rally. Tap the circle to set who serves first.
 - Auto side switch after each set, plus a "SWITCH SIDES" alert at 8 in the deciding set
@@ -42,4 +42,4 @@ Open the URL in **Chrome** and tap **⋮ → Add to Home screen → Install**.
 Push your changes, then bump `CACHE` in `sw.js` (`rally-v1` → `rally-v2`) so phones fetch the new version.
 
 ---
-Font: Bebas Neue (SIL Open Font License, see `fonts/OFL-LICENSE.txt`).
+Fonts: Anton and Bebas Neue (SIL Open Font License, see `fonts/`).

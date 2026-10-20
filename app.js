@@ -12,7 +12,7 @@
       { name: "AWAY", color: COLORS[1] },
     ],
     settings: {
-      bestOf: 5,
+      bestOf: 1,
       points: 25,
       tiebreak: 15,
       winBy2: true,
@@ -179,7 +179,6 @@
 
   function render({ bump } = {}) {
     const { game: g, teams } = state;
-    let matchPoint = false;
     const root = document.documentElement.style;
     root.setProperty("--c0", teams[0].color);
     root.setProperty("--c1", teams[1].color);
@@ -205,28 +204,25 @@
       badge.textContent = label || "·";
       badge.classList.toggle("on", !!label);
       badge.classList.toggle("match", label === "MATCH POINT");
-      if (label === "MATCH POINT") matchPoint = true;
     }
 
-    $("setsA").textContent = g.sets[0];
-    $("setsB").textContent = g.sets[1];
+    const need = setsToWin();
+    for (const i of [0, 1]) {
+      $("pips" + i).innerHTML =
+        state.settings.bestOf === 1 ? "" : Array.from({ length: need }, (_, k) => `<i class="${k < g.sets[i] ? "on" : ""}"></i>`).join("");
+    }
 
     const setNo = Math.min(currentSetNo(), state.settings.bestOf);
-    $("setLabel").classList.toggle("match", matchPoint);
-    $("setLabel").textContent = matchPoint
-      ? "MATCH POINT"
-      : g.matchOver
+    $("setLabel").textContent = g.matchOver
       ? "FINAL"
-      : g.pendingSet !== null
-      ? `SET ${g.setHistory.length} DONE`
       : state.settings.bestOf === 1
       ? `TO ${target()}`
-      : isDecider()
-      ? `SET ${setNo} · DECIDER`
       : `SET ${setNo}`;
+    $("formatLabel").textContent =
+      state.settings.bestOf === 1 ? "1 SET" : isDecider() && !g.matchOver ? "DECIDER" : `BEST OF ${state.settings.bestOf}`;
 
-    $("setHistory").innerHTML = g.setHistory
-      .map((s) => `<span class="w${s.winner}">${g.swapped ? s.b : s.a}–${g.swapped ? s.a : s.b}</span>`)
+    $("setHistory").innerHTML = state.settings.bestOf === 1 ? "" : g.setHistory
+      .map((s) => `<span class="w${s.winner}">${s.a}–${s.b}</span>`)
       .join("");
 
     $("btnUndo").disabled = state.history.length === 0;
