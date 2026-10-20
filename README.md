@@ -7,7 +7,7 @@
 **Ad-free volleyball scoreboard you can install on your phone.**
 Tap to score, read it from across the court, and reset to 0–0 without sitting through an ad.
 
-**Live Site:** [https://alex-gamero.github.io/volley-score/](https://alex-gamero.github.io/volley-score/)
+**Live Site:** [https://alex-gamero.github.io/Rally/](https://alex-gamero.github.io/Rally/)
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
@@ -57,7 +57,7 @@ When a set ends, a card shows the winner and the score. Tap **Next set** to keep
 ---
 
 ## Install it on your phone (Android)
-1. Open **[alex-gamero.github.io/volley-score](https://alex-gamero.github.io/volley-score/)** in **Chrome**.
+1. Open **[alex-gamero.github.io/Rally](https://alex-gamero.github.io/Rally/)** in **Chrome**.
 2. Tap **⋮ → Add to Home screen → Install**.
 3. Open it from your home screen. It runs fullscreen and sideways, like a native app.
 
@@ -75,7 +75,7 @@ You don't need the Play Store. The app updates itself the next time you open it 
 
 ### Project structure
 ```
-volley-score/
+Rally/
 ├── index.html            # Markup
 ├── styles.css            # Layout & visual design
 ├── app.js                # Scoring rules, state, undo history, UI
@@ -87,8 +87,8 @@ volley-score/
 
 ### Run locally
 ```bash
-git clone https://github.com/alex-gamero/volley-score.git
-cd volley-score
+git clone https://github.com/alex-gamero/Rally.git
+cd Rally
 python -m http.server 8000
 # open http://localhost:8000
 ```
