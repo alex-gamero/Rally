@@ -1,11 +1,11 @@
 /* Service worker: caches the app so it works offline (gym with no signal? no problem).
    Bump CACHE when you change files so phones pick up the new version. */
-const CACHE = "rally-v3";
+const CACHE = "rally-v4";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css",
-  "./app.js",
+  "./styles.css?v=4",
+  "./app.js?v=4",
   "./manifest.webmanifest",
   "./fonts/bebas-neue.woff2",
   "./fonts/anton.woff2",

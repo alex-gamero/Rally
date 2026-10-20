@@ -39,7 +39,7 @@ python -m http.server 8000
 Open the URL in **Chrome** and tap **⋮ → Add to Home screen → Install**.
 
 ## Updating
-Push your changes, then bump `CACHE` in `sw.js` (`rally-v1` → `rally-v2`) so phones fetch the new version.
+Push your changes, then bump the version everywhere: `?v=` on the CSS/JS links in `index.html` and in `sw.js`, plus `CACHE` in `sw.js`, so phones never mix old and new files.
 
 ---
 Fonts: Anton and Bebas Neue (SIL Open Font License, see `fonts/`).
