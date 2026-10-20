@@ -2,10 +2,10 @@
 
 <img src="icons/icon-192.png" width="96" alt="Rally icon" />
 
-# Rally — Volleyball Scoreboard
+# Rally
 
-**A fast, ad-free volleyball scoreboard that installs on your phone like a real app.**
-Tap to score, read it from across the court, and never watch an ad to reset 0–0 again.
+**Ad-free volleyball scoreboard you can install on your phone.**
+Tap to score, read it from across the court, and reset to 0–0 without sitting through an ad.
 
 **Live Site:** [https://alex-gamero.github.io/volley-score/](https://alex-gamero.github.io/volley-score/)
 
@@ -21,21 +21,14 @@ Tap to score, read it from across the court, and never watch an ad to reset 0–
 
 ---
 
-## Why I built it
-I play open volleyball, and I was keeping score with a free app from the Play Store. Every time I reset the score to 0, it showed me a full-screen ad. It happened every set, every game.
-
-So I built my own. Rally has **no ads, no accounts and no tracking**. It runs offline in the gym, and it's designed so the people on the court can read the score from far away.
-
----
-
 ## Features
 | | |
 |---|---|
-| 🏐 **Real volleyball rules** | Sets to 11 / 15 / 21 / 25, win by 2, single set or best of 3 / 5, plus a shorter deciding set |
+| 🏐 **Real volleyball rules** | Sets to 11, 15, 21 or 25, win by 2, single set or best of 3 / 5, plus a shorter deciding set |
 | 👀 **Readable from the court** | Full-height numbers in a heavy display font, bright team colors on pure black |
-| 🎯 **SET POINT / MATCH POINT** | Shows automatically. Match point pulses so nobody misses it. |
+| 🎯 **Set point & match point** | Shows up automatically, and match point pulses so nobody misses it |
 | 🔄 **Serve tracking** | The serve indicator follows the rally winner, and the serving side glows |
-| ↔️ **Side switching** | Swaps sides after each set, with a *SWITCH SIDES* alert at 8 in the deciding set |
+| ↔️ **Side switching** | Switches sides after each set, with a *SWITCH SIDES* alert at 8 in the deciding set |
 | ↩️ **Unlimited undo** | Fixes any mistake, even after a set or match has ended |
 | 🎨 **Team names & colors** | 8 high-contrast colors to pick from |
 | 📴 **Works offline** | A service worker caches everything after the first load |
@@ -45,15 +38,9 @@ So I built my own. Rally has **no ads, no accounts and no tracking**. It runs of
 ---
 
 ## Screenshots
-<div align="center">
-
-**Set point, best of 3**
-<img src="assetsREADME/scoreboard.png" width="720" alt="Scoreboard showing set point" />
-
-**Setup**
-<img src="assetsREADME/setup.png" width="720" alt="Setup panel" />
-
-</div>
+| Match point in the deciding set | Match won |
+|:---:|:---:|
+| <img src="assetsREADME/scoreboard.png" width="420" alt="Scoreboard at match point" /> | <img src="assetsREADME/match-won.png" width="420" alt="Match won card" /> |
 
 ---
 
@@ -72,9 +59,9 @@ When a set ends, a card shows the winner and the score. Tap **Next set** to keep
 ## Install it on your phone (Android)
 1. Open **[alex-gamero.github.io/volley-score](https://alex-gamero.github.io/volley-score/)** in **Chrome**.
 2. Tap **⋮ → Add to Home screen → Install**.
-3. Launch it from your home screen. It opens fullscreen and sideways, like a native app.
+3. Open it from your home screen. It runs fullscreen and sideways, like a native app.
 
-You don't need the Play Store. Updates install themselves the next time you open the app with internet on.
+You don't need the Play Store. The app updates itself the next time you open it with internet on.
 
 ---
 
