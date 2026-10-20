@@ -71,6 +71,12 @@
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </main>
 
+  <!-- Shown only if the phone is held vertically -->
+  <div class="rotate" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+    <span>Turn your phone sideways</span>
+  </div>
+
   <!-- Set / match won overlay -->
   <div class="overlay" id="winOverlay" hidden>
     <div class="win-card">
@@ -126,13 +132,13 @@
       <div class="row">
         <span>Points per set</span>
         <div class="seg" data-setting="points">
-          <button data-v="15">15</button><button data-v="21">21</button><button data-v="25">25</button>
+          <button data-v="11">11</button><button data-v="15">15</button><button data-v="21">21</button><button data-v="25">25</button>
         </div>
       </div>
       <div class="row">
         <span>Deciding set</span>
         <div class="seg" data-setting="tiebreak">
-          <button data-v="15">15</button><button data-v="21">21</button><button data-v="25">25</button>
+          <button data-v="11">11</button><button data-v="15">15</button><button data-v="21">21</button><button data-v="25">25</button>
         </div>
       </div>
 

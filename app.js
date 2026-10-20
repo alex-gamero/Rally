@@ -179,6 +179,7 @@
 
   function render({ bump } = {}) {
     const { game: g, teams } = state;
+    let matchPoint = false;
     const root = document.documentElement.style;
     root.setProperty("--c0", teams[0].color);
     root.setProperty("--c1", teams[1].color);
@@ -203,13 +204,18 @@
       }
       badge.textContent = label || "·";
       badge.classList.toggle("on", !!label);
+      badge.classList.toggle("match", label === "MATCH POINT");
+      if (label === "MATCH POINT") matchPoint = true;
     }
 
     $("setsA").textContent = g.sets[0];
     $("setsB").textContent = g.sets[1];
 
     const setNo = Math.min(currentSetNo(), state.settings.bestOf);
-    $("setLabel").textContent = g.matchOver
+    $("setLabel").classList.toggle("match", matchPoint);
+    $("setLabel").textContent = matchPoint
+      ? "MATCH POINT"
+      : g.matchOver
       ? "FINAL"
       : g.pendingSet !== null
       ? `SET ${g.setHistory.length} DONE`
@@ -401,6 +407,13 @@
   }
   document.addEventListener("visibilitychange", updateWakeLock);
   document.addEventListener("pointerdown", updateWakeLock, { once: true });
+
+  // ---------- Landscape only ----------
+  function lockLandscape() {
+    try { screen.orientation.lock("landscape").catch(() => {}); } catch { /* not supported */ }
+  }
+  lockLandscape();
+  document.addEventListener("pointerdown", lockLandscape, { once: true });
 
   // ---------- Offline support ----------
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
