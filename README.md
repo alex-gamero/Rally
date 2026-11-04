@@ -105,9 +105,3 @@ python -m http.server 8000
 
 ## Contributing
 Got an idea or found a bug? Open an **issue** or submit a **pull request**!
-
-<div align="center">
-
-Made with 🏐 by [Alex Gamero](https://github.com/alex-gamero)
-
-</div>
