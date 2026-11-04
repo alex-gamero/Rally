@@ -21,22 +21,6 @@ Tap to score, read it from across the court, and reset to 0–0 without sitting 
 
 ---
 
-## Features
-| | |
-|---|---|
-| 🏐 **Real volleyball rules** | Sets to 11, 15, 21 or 25, win by 2, single set or best of 3 / 5, plus a shorter deciding set |
-| 👀 **Readable from the court** | Full-height numbers in a heavy display font, bright team colors on pure black |
-| 🎯 **Set point & match point** | Shows up automatically, and match point pulses so nobody misses it |
-| 🔄 **Serve tracking** | The serve indicator follows the rally winner, and the serving side glows |
-| ↔️ **Side switching** | Switches sides after each set, with a *SWITCH SIDES* alert at 8 in the deciding set |
-| ↩️ **Unlimited undo** | Fixes any mistake, even after a set or match has ended |
-| 🎨 **Team names & colors** | 8 high-contrast colors to pick from |
-| 📴 **Works offline** | A service worker caches everything after the first load |
-| 💾 **Never loses a game** | The score is saved on the device, so closing the app by accident is fine |
-| 📳 **Feels native** | Haptic feedback, screen kept awake, fullscreen landscape lock |
-
----
-
 ## Screenshots
 | Match point in the deciding set | Match won |
 |:---:|:---:|
